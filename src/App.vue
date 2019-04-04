@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <p>app div</p>
     <router-view/>
+    <base-footer></base-footer>
   </div>
 </template>
 
 <script>
+  import LogIn from './components/Login'
+  import BaseFooter from "./components/view/BaseFooter";
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    BaseFooter,
+    LogIn }
 }
 </script>
 
