@@ -10,17 +10,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld1',
-    //   component: HelloWorld
-    // },
-    //
-    // {
-    //   path: '/log',
-    //   name: 'Login',
-    //   component: Login
-    // },
+
     {
       path: '/',
       component: Home,

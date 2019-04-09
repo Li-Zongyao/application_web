@@ -1,9 +1,8 @@
 <template>
   <div id="home">
     <el-container>
-      this is home
-    <router-view/>
-    <base-footer></base-footer>
+      <p> this is home</p>
+    <router-view class="me-container"/>
     </el-container>
 
   </div>
@@ -19,5 +18,9 @@
 </script>
 
 <style scoped>
-
+  .me-container{
+    margin: 100px auto 140px;
+  }
 </style>
+
+
