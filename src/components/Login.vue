@@ -57,16 +57,31 @@
       }
     },
     methods: {
-      login () {
+      login() {
         this.$axios
           .post('/login', {
             name: this.userForm.account,
             password: this.userForm.password
           })
-          .then((res)=>{
+          .then((res) => {
             console.info('后台返回的数据', res.data);
+            if(res.data == "wrong password or name"){
+              this.$router.push('/login');
+              this.$message({message: '警告,用户名密码错误', type: 'warning'});
+            }
+            else if(res.data == "1"){
+              console.info('后台返回的数据 is 1');
+              this.$router.push('/home');
+            }
+            else if(res.data == "2"){
+              console.info('后台返回的数据 is 2');
+              this.$router.push('/hello');
+            }
+
           })
-          .catch( (err)=>{
+
+
+          .catch((err) => {
             console.log(err)
           })
       }
