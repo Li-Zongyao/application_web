@@ -37,10 +37,13 @@
     left: 0;
     z-index: 1024;
   }
+  .me-area{
+    height: 40px !important;
+  }
 
   .me-footer {
     text-align: center;
-    line-height: 60px;
+    line-height: 30px;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
 

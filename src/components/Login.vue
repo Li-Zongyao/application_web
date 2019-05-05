@@ -1,5 +1,5 @@
 <template>
-  <div id="login" >
+  <div id="login"  >
     <!--<div id="login" v-title data-title="登录">-->
     <!--<video preload="auto" class="me-video-player" autoplay="autoplay" loop="loop">
           <source src="../../static/vedio/sea.mp4" type="video/mp4">
@@ -71,7 +71,7 @@
             }
             else if(res.data == "1"){
               console.info('后台返回的数据 is 1');
-              this.$router.push('/home');
+              this.$router.push('/home/table');
             }
             else if(res.data == "2"){
               console.info('后台返回的数据 is 2');
@@ -95,6 +95,9 @@
     min-height: 100%;
   }
 
+
+
+
   .me-video-player {
     background-color: transparent;
     width: 100%;
@@ -116,6 +119,7 @@
     margin-left: -180px;
     left: 50%;
     padding: 30px;
+    background-color: #67aa74;
   }
 
   .me-login-box-radius {
@@ -137,7 +141,7 @@
   }
 
   .me-login-design-color {
-    color: #5FB878 !important;
+    color: #b6b857 !important;
   }
 
   .me-login-button {

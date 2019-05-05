@@ -7,7 +7,7 @@
 
 <script>
   import LogIn from './components/Login'
-  import BaseFooter from "./components/view/BaseFooter";
+  import BaseFooter from "./view/BaseFooter";
 export default {
   name: 'App',
   components:{
@@ -17,6 +17,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
