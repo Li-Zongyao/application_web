@@ -4,7 +4,7 @@
     <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
       <el-form :inline="true" :model="filters">
         <el-form-item>
-          <el-input v-model="filters.name" placeholder="姓名"></el-input>
+          <el-input v-model="filters.programname" placeholder="项目名"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" v-on:click="getUsers">查询</el-button>
@@ -13,7 +13,7 @@
     </el-col>
 
     <!--列表-->
-    <el-table :data="program" highlight-current-row v-loading="loading" style="width: 100%;">
+    <el-table :data="program" highlight-current-row v-loading="loading" @selection-change="selsChange" style="width: 100%;">
       <el-table-column type="selection" width="55">
       </el-table-column>
       <el-table-column prop="id" label="id" width="120" sortable>
@@ -31,6 +31,12 @@
 
     </el-table>
 
+    <!--delete工具条-->
+    <el-col :span="24" class="toolbar">
+      <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+      <!--<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">-->
+      <!--</el-pagination>-->
+    </el-col>
 
   </section>
 </template>
@@ -43,9 +49,11 @@
       return {
         aaa:'',
         filters: {
-          name: ''
+          programname: ' '
         },
         loading: false,
+        page: 1,
+        sels: [],//列表选中列
         program: [
         ]
       }
@@ -54,23 +62,52 @@
       getUsers() {
         this.$axios
           .post('/programlist', {
-            name: this.filters.name
+            programname: this.filters.programname
           })
 
           .then((res) => {
-            console.info('programlist 显示开始');
             this.loading = true;
             console.info('return message = '+ res.data.aaa);
-            console.info('program = '+ res.data.program);
+            console.info('项目 = '+ res.data.program);
             this.program = res.data.program;
             this.loading = false;
-            console.info('programlist 显示结束');
+            console.info('显示成功 ');
           })
 
           .catch((err) => {
             console.log(err)
           })
 
+      },
+
+      //批量删除
+      batchRemove() {
+        var ids = this.sels.map(item => item.id).toString();
+        this.$confirm('确认删除选中记录吗？', '提示', {
+          type: 'warning'
+        }).then(() => {
+          this.loading = true;
+          //NProgress.start();
+          this.$axios
+            .post('/delprogramlist', {
+              ids: ids
+            })
+            .then((res) => {
+            this.loading = false;
+            //NProgress.done();
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+            this.getUsers();
+          });
+        }).catch(() => {
+
+        });
+      },
+      //选择刷新
+      selsChange: function (sels) {
+        this.sels = sels;
       },
     },
     mounted() {

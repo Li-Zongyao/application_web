@@ -6,6 +6,7 @@ import Home from "@/Home"
 import NotFound from "@/components/NotFound"
 import Table from "@/view/style1/Table.vue"
 import Form from "@/view/style1/Form.vue"
+import Home2 from "@/Home2"
 
 
 Vue.use(Router)
@@ -32,11 +33,17 @@ export default new Router({
       component: Home,
       iconCls: 'el-icon-message',  //图标样式参数
       children: [
-        // { path: '/home/hello', name: 'Hello', component: HelloWorld },
-        // { path: '/main', component: Main, name: '主页', hidden: true },
         { path: '/home/table', component: Table, name: '查询' },
         { path: '/home/form', component: Form, name: '项目申报' },
-        // { path: '/user', component: user, name: '列表' },
+      ]
+    },
+    {
+      path: '/home2',
+      name: '配置2',
+      component: Home2,
+      iconCls: 'el-icon-message',  //图标样式参数
+      children: [
+
       ]
     },
     {

@@ -65,7 +65,13 @@
             apptime: this.programform.apptime,
           })
           .then((res) => {
-            console.info('form 返回');
+            console.info('form 返回 成功');
+            if (res.data == 200) {
+              this.$message({message: '添加完毕', type: 'success'});
+              setTimeout(function()  {location. reload()},2000);
+            }else{
+              this.$message({message: '添加错误', type: 'warning'});
+            }
           })
 
 

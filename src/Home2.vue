@@ -10,14 +10,14 @@
         </div>
       </el-col>
       <!--<el-col :span="4" class="userinfo">-->
-        <!--<el-dropdown trigger="hover">-->
-          <!--<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>-->
-          <!--<el-dropdown-menu slot="dropdown">-->
-            <!--<el-dropdown-item>我的消息</el-dropdown-item>-->
-            <!--<el-dropdown-item>设置</el-dropdown-item>-->
-            <!--<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>-->
-          <!--</el-dropdown-menu>-->
-        <!--</el-dropdown>-->
+      <!--<el-dropdown trigger="hover">-->
+      <!--<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>-->
+      <!--<el-dropdown-menu slot="dropdown">-->
+      <!--<el-dropdown-item>我的消息</el-dropdown-item>-->
+      <!--<el-dropdown-item>设置</el-dropdown-item>-->
+      <!--<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>-->
+      <!--</el-dropdown-menu>-->
+      <!--</el-dropdown>-->
       <!--</el-col>-->
     </el-col>
     <el-col :span="24" class="main">
@@ -25,12 +25,12 @@
         <!--导航菜单-->
         <el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
                  unique-opened router v-show="!collapsed">
-          <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden && item.name=='配置1'">
+          <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden ">
             <el-submenu :index="index+''" v-if="!item.leaf">
               <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
               <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
             </el-submenu>
-           <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+            <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
           </template>
         </el-menu>
         <!--导航菜单-折叠后-->
@@ -43,34 +43,34 @@
               </ul>
             </template>
             <template v-else>
-          <ul>
-          <li class="el-submenu">
-            <div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)"><i :class="item.iconCls"></i></div>
+              <ul>
+                <li class="el-submenu">
+                  <div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)"><i :class="item.iconCls"></i></div>
+                </li>
+              </ul>
+            </template>
           </li>
-          </ul>
-</template>
-</li>
-</ul>
-</aside>
-<section class="content-container">
-  <div class="grid-content bg-purple-light">
-    <el-col :span="24" class="breadcrumb-container">
-      <strong class="title">{{$route.name}}</strong>
-      <el-breadcrumb separator="/" class="breadcrumb-inner">
-        <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
-          {{ item.name }}
-        </el-breadcrumb-item>
-      </el-breadcrumb>
+        </ul>
+      </aside>
+      <section class="content-container">
+        <div class="grid-content bg-purple-light">
+          <el-col :span="24" class="breadcrumb-container">
+            <strong class="title">{{$route.name}}</strong>
+            <el-breadcrumb separator="/" class="breadcrumb-inner">
+              <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
+                {{ item.name }}
+              </el-breadcrumb-item>
+            </el-breadcrumb>
+          </el-col>
+          <el-col :span="24" class="content-wrapper">
+            <transition name="fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
+          </el-col>
+        </div>
+      </section>
     </el-col>
-    <el-col :span="24" class="content-wrapper">
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    </el-col>
-  </div>
-</section>
-</el-col>
-</el-row>
+  </el-row>
 </template>
 
 <script>
